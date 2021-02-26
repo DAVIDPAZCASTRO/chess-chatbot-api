@@ -1,0 +1,24 @@
+{
+  "name": "chess-chatbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DAVIDPAZCASTRO"
+  },
+  "author": "David Paz Castro",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.1.1",
+    "tmi.js": "^1.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
