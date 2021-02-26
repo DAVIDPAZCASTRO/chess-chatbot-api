@@ -14,6 +14,7 @@
   "author": "David Paz Castro",
   "license": "ISC",
   "dependencies": {
+    "chess.js": "^0.11.0",
     "express": "^4.17.1",
     "socket.io": "^3.1.1",
     "tmi.js": "^1.7.1"
