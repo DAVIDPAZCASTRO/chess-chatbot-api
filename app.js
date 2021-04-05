@@ -11,14 +11,17 @@
 // });
 
 // const createServer = require("./server");
-const createServer = require("./server");
-const createTwitchSocket = require("./twitch");
+// const createServer = require("./server");
+const createTwitchSocket = require("./twitchSocket");
+const chessGame = require("./chess");
 
 console.log('HOLAQUETAL')
-createServer((socket) => {
-  console.log('createServer')
-  const twitchSocket = createTwitchSocket();
-  console.log({ twitchSocket });
-  console.log({ socket });
-  // socket.on();
-});
+// createServer((socket) => {
+//   console.log('createServer')
+//   const twitchSocket = createTwitchSocket();
+//   console.log({ twitchSocket });
+//   console.log({ socket });
+//   // socket.on();
+// });
+
+createTwitchSocket(chessGame);
