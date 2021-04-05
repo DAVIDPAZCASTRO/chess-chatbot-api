@@ -191,15 +191,6 @@ const chessGame = {
     // console.log({ newGame });
     this.game = newGame;
   },
-  get gameInfo() {
-    return this.game;
-  },
-  get playerTurn() {
-    return this.turn;
-  },
-  get getHistoryMoves() {
-    return this.moves;
-  },
   bothPlayersJoined() {
     return Object.keys(this.players).length === 2;
   },
@@ -217,11 +208,11 @@ const chessGame = {
     if (!this.isPlayerInGame(player)) return;
     if (!this.bothPlayersJoined(player))
       return "Falta un jugador en la partida. Otro usuario debe usar el comando !play para participar.";
+    const gameOverText = this.gameOver();
+    if (!!gameOverText) return gameOverText;
     return `Es turno de ${this.getPlayerTurn()}, con las fichas ${getTextPlayerColor(
       this.turn
-    )}. Este es el estado actual del tablero:\n${paintBoard(
-      this.game.board()
-    )}`;
+    )}. Estado del tablero:\n${paintBoard(this.game.board())}`;
   },
   startGame(player, color) {
     console.log(player);
@@ -243,7 +234,7 @@ const chessGame = {
     if (!this.isPlayerInGame(player)) return;
     this.newGame = "";
     this.turn = "";
-    this.moves = "";
+    this.moves = [];
     this.players = {};
     return "Se ha eliminado la partida. Para crear una partida nueva, usa el comando !chess";
   },
@@ -251,7 +242,7 @@ const chessGame = {
     if (!this.game.game_over()) return;
     const finishText = "El juego ha acabado.";
     if (this.game.in_checkmate())
-      return `${finishText} Ha ganado el jugador ${this.getPlayerTurn()}.\n${paintBoard(
+      return `${finishText} ¡Jaque mate! Ha ganado el jugador ${this.getPlayerTurn()}. Usa !finishGame para borrar.\n${paintBoard(
         this.game.board()
       )}`;
     if (this.game.in_stalemate())
