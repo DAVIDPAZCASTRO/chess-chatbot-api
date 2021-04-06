@@ -6,7 +6,7 @@ const getTextPlayerColor = (playerColor) => {
 };
 
 const pieceDictionary = {
-  pawnWhite: "Ⓟ",
+  pawnWhite: "ⓟ",
   pawnBlack: "🅟",
   rookWhite: "Ⓡ",
   rookBlack: "🅡",
@@ -87,7 +87,7 @@ const paintCommandsHelp = () => {
 // 🅁🄽‍🄱🅀🄺‍🄱🄽🅁
 
 const paintBoard = (board) => {
-  let s = "===================================\n";
+  let s = "===============================\n";
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === null) {
@@ -115,7 +115,7 @@ const paintBoard = (board) => {
     }
   }
   s += "ⓐ┴ⓑ┴ⓒ┴ⓓ┴ⓔ┴ⓕ┴ⓖ┴ⓗ\n";
-  s += "===================================\n";
+  s += "===============================\n";
   return s;
 };
 
