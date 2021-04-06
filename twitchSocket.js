@@ -27,7 +27,6 @@ const createTwitchSocket = (chessGame) => {
     } // Ignore messages from the bot
 
     // Remove whitespace from chat message
-    const commandName = msg.trim();
     const [command, param = ""] = msg.split(" ");
     console.log({ command });
     console.log({ target });
@@ -36,12 +35,7 @@ const createTwitchSocket = (chessGame) => {
     const username = context.username;
     // If the command is known, let's execute it
     let text = "";
-    switch (command) {
-      case "!dice":
-        console.log("ENTRAAAA");
-        client.say(username, `You rolled a ${rollDice()}`);
-        console.log(`* Executed ${command} command`);
-        break;
+    switch (command.toLowerCase()) {
       case "!info":
         text = chessGame.paintData();
         text && client.say(target, text);
@@ -70,11 +64,11 @@ const createTwitchSocket = (chessGame) => {
         text = chessGame.setPlayerMove(username, param);
         text && client.say(target, text);
         break;
-      case "!possibleMoves":
+      case "!possiblemoves":
         text = chessGame.getPossibleMoves(username);
         text && client.say(target, text);
         break;
-      case "!finishGame":
+      case "!finishgame":
         text = chessGame.finishGame(username);
         text && client.say(target, text);
         break;

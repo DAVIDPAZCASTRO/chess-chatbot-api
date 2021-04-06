@@ -87,7 +87,7 @@ const paintCommandsHelp = () => {
 // 🅁🄽‍🄱🅀🄺‍🄱🄽🅁
 
 const paintBoard = (board) => {
-  let s = "";
+  let s = "===================================\n";
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === null) {
@@ -115,6 +115,7 @@ const paintBoard = (board) => {
     }
   }
   s += "ⓐ┴ⓑ┴ⓒ┴ⓓ┴ⓔ┴ⓕ┴ⓖ┴ⓗ\n";
+  s += "===================================\n";
   return s;
 };
 
@@ -215,7 +216,7 @@ const chessGame = {
         const gameOverText = this.gameOver();
         if (!!gameOverText) return gameOverText;
         this.turn = this.game.turn();
-        return `El usuario ${player} Ha hecho un movimiento. Consulta la leyenda con el comando !caption. Estado del tablero: \n${paintBoard(
+        return `El usuario ${player} Ha hecho un movimiento. Consulta la leyenda con el comando !caption. El estado del tablero es: \n${paintBoard(
           this.game.board()
         )}`;
       }
