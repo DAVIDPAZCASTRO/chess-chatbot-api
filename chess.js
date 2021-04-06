@@ -5,6 +5,24 @@ const getTextPlayerColor = (playerColor) => {
   if (playerColor === "b") return "negras";
 };
 
+const pieceDictionary = {
+  pawnWhite: "Ⓟ",
+  pawnBlack: "🅟",
+  rookWhite: "Ⓡ",
+  rookBlack: "🅡",
+  knightWhite: "Ⓝ",
+  knightBlack: "🅝",
+  bishopWhite: "Ⓑ",
+  bishopBlack: "🅑",
+  queenWhite: "Ⓠ",
+  queenBlack: "🅠",
+  kingWhite: "Ⓚ",
+  kingBlack: "🅚",
+  // Squares
+  squareWhite: "⓪",
+  squareBlack: "⓿",
+};
+
 // const paintPiece = (piece, color) => {
 //   const isWhite = color === "w";
 //   switch (piece) {
@@ -27,52 +45,39 @@ const paintPiece = (piece, color) => {
   const isWhite = color === "w";
   switch (piece) {
     case "r":
-      return isWhite ? "🅁" : "🆁";
+      return isWhite ? pieceDictionary.rookWhite : pieceDictionary.rookBlack;
     case "n":
-      return isWhite ? "🄽‍" : "🅽";
+      return isWhite
+        ? pieceDictionary.knightWhite
+        : pieceDictionary.knightBlack;
     case "b":
-      return isWhite ? "🄱" : "🅱";
+      return isWhite
+        ? pieceDictionary.bishopWhite
+        : pieceDictionary.bishopBlack;
     case "q":
-      return isWhite ? "🅀" : "🆀";
+      return isWhite ? pieceDictionary.queenWhite : pieceDictionary.queenBlack;
     case "k":
-      return isWhite ? "🄺‍" : "🅺";
+      return isWhite ? pieceDictionary.kingWhite : pieceDictionary.kingBlack;
     case "p":
-      return isWhite ? "🄿" : "🅿";
+      return isWhite ? pieceDictionary.pawnWhite : pieceDictionary.pawnBlack;
   }
 };
 
 const paintSquare = (backgroundWhite) => {
-  return backgroundWhite ? "⓪" : "⓿";
+  return backgroundWhite
+    ? pieceDictionary.squareWhite
+    : pieceDictionary.squareBlack;
 };
 
 const paintCaption = () => {
-  return "Leyenda: \n🄿 ➝ Peón blancas, 🅁 ➝ Torre blancas, 🄽‍ ➝ Caballo blancas, 🄱 ➝ Alfil blancas, 🅀 ➝ Reina blancas, 🄺‍ ➝ Rey blancas, 🅿 ➝ Peón negras, 🆁 ➝ Torre negras, 🅽 ➝ Caballo negras, 🅱 ➝ Alfil negras, 🆀 ➝ Reina negras, 🅺 ➝ Rey negras, ⓪ ➝ Casilla vacía de fondo blanco, ⓿ ➝ Casilla vacía de fondo negro";
+  return `Leyenda: \n${pieceDictionary.pawnWhite} ➝ Peón blancas, ${pieceDictionary.rookWhite} ➝ Torre blancas, ${pieceDictionary.knightWhite} ➝ Caballo blancas, ${pieceDictionary.bishopWhite} ➝ Alfil blancas, ${pieceDictionary.queenWhite} ➝ Reina blancas, ${pieceDictionary.kingWhite} ➝ Rey blancas, ${pieceDictionary.pawnBlack} ➝ Peón negras, ${pieceDictionary.rookBlack} ➝ Torre negras, ${pieceDictionary.knightBlack} ➝ Caballo negras, ${pieceDictionary.bishopBlack} ➝ Alfil negras, ${pieceDictionary.queenBlack} ➝ Reina negras, ${pieceDictionary.kingBlack} ➝ Rey negras, ${pieceDictionary.squareWhite} ➝ Casilla vacía de fondo blanco, ${pieceDictionary.squareBlack} ➝ Casilla vacía de fondo negro`;
 };
 
 const paintCommandsHelp = () => {
   return "Comandos: \n!chess ➝ Crear la partida, !play ➝ Participar como segundo jugador, !finishGame ➝ Borrar la partida actual, !move [movimiento] ➝ Mover ficha si es su turno (método algebraico), !possibleMoves ➝ Ver los movimientos posibles si es su turno, !board ➝ Ver el estado del tablero y de quien es el turno, !caption ➝ Consultar leyenda. Si un usuario no participa en el juego, se ignoararán para él la mayor parte de los comandos.";
 };
 
-//   ╔═╤═╤═╤═╤═╤═╤═╤═╗╮
-//   ║♜│♞│♝│♛│♚│♝│♞│♜║8
-//   ╟─┼─┼─┼─┼─┼─┼─┼─╢┊
-//   ║♟│♟│♟│♟│♟│♟│♟│♟║7
-//   ╟─┼─┼─┼─┼─┼─┼─┼─╢┊
-//   ║▓│░│▓│░│▓│░│▓│░║6
-//   ╟─┼─┼─┼─┼─┼─┼─┼─╢┊
-//   ║░│ │░│ │░│ │░│ ║5
-//   ╟─┼─┼─┼─┼─┼─┼─┼─╢┊
-//   ║ │░│ │░│ │░│ │░║4
-//   ╟─┼─┼─┼─┼─┼─┼─┼─╢┊
-//   ║░│ │░│ │░│ │░│ ║3
-//   ╟─┼─┼─┼─┼─┼─┼─┼─╢┊
-//   ║♙│♙│♙│♙│♙│♙│♙│♙║2
-//   ╟─┼─┼─┼─┼─┼─┼─┼─╢┊
-//   ║♖│♘│♗│♕│♔│♗│♘│♖║1
-//   ╚═╧═╧═╧═╧═╧═╧═╧═╝┊
-//   ╰a┈b┈c┈d┈e┈f┈g┈h┈╯
-
-// 🆁🅽🅱🆀🅺🅱🅽🆁❶
+// 🆁🅽🅱🆀🅺🅱🅽🆁
 // 🅿🅿🅿🅿🅿🅿🅿🅿
 // 🅇🆇🅇🆇🅇🆇🅇🆇
 // 🆇🅇🆇🅇🆇🅇🆇🅇
@@ -80,55 +85,9 @@ const paintCommandsHelp = () => {
 // 🆇🅇🆇🅇🆇🅇🆇🅇
 // 🄿🄿🄿🄿🄿🄿🄿🄿
 // 🅁🄽‍🄱🅀🄺‍🄱🄽🅁
-//❶➀
-
-// const paintBoard = (board) => {
-//   let s = "╔════════════════════╗ \n";
-//   console.log({ board });
-//   for (let i = 0; i < board.length; i++) {
-//     for (let j = 0; j < board[i].length; j++) {
-//       if (j === 0) {
-//         s += "║";
-//       }
-//       if (board[i][j] === null) {
-//         s += "𓐄𓐄▢";
-//       } else {
-//         let piece = board[i][j].type;
-//         let color = board[i][j].color;
-//         var symbol = paintPiece(piece, color);
-//         s += `𓐄𓐄${symbol}`;
-//       }
-
-//       if (j === board[i].length - 1) {
-//         s += `𓐄𓐄║${"87654321"[i]} \n`;
-//       }
-//     }
-//   }
-//   s += "╚════════════════════╝ \n";
-//   s += "*a𓐄𓐄b𓐄𓐄c𓐄𓐄d𓐄𓐄e𓐄𓐄f𓐄𓐄g𓐄𓐄h \n";
-
-//   return s;
-// };
-
-// ┌────────────────────┐
-// │ April ▒▒▒▒▒▒▒ 2021 │
-// ├──┬──┬──┬──┬──┬──┬──┤
-// │Su│Mo│Tu│We│Th│Fr│Sa│
-// ├──┼──┼──┼──┼──┼──┼──┤
-// │▒▒│▒▒│▒▒│▒▒│01│02│03│
-// ╔══╗──┼──┼──┼──┼──┼──┤
-// ║04║05│06│07│08│09│10│
-// ╚══╝──┼──┼──┼──┼──┼──┤
-// │11│12│13│14│15│16│17│
-// ├──┼──┼──┼──┼──┼──┼──┤
-// │18│19│20│21│22│23│24│
-// ├──┼──┼──┼──┼──┼──┼──┤
-// │25│26│27│28│29│30│▒▒│
-// └──┴──┴──┴──┴──┴──┴──┘
 
 const paintBoard = (board) => {
   let s = "";
-  console.log({ board });
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === null) {
@@ -155,32 +114,9 @@ const paintBoard = (board) => {
       }
     }
   }
-  s += "ⓐ𐠊ⓑ𐠊ⓒ𐠊ⓓ𐠊ⓔ𐠊ⓕ𐠊ⓖ𐠊ⓗ\n";
+  s += "ⓐ┴ⓑ┴ⓒ┴ⓓ┴ⓔ┴ⓕ┴ⓖ┴ⓗ\n";
   return s;
 };
-
-// const paintBoard = (board) => {
-//   console.log({ board });
-//   let s = "";
-//   for (let i = 0; i < board.length; i++) {
-//     for (let j = 0; j < board[i].length; j++) {
-//       if (board[i][j] === null) {
-//         s += "🅇";
-//       } else {
-//         let piece = board[i][j].type;
-//         let color = board[i][j].color;
-//         var symbol = paintPiece(piece, color);
-//         s += `${symbol}`;
-//       }
-
-//       if (j === board[i].length - 1) {
-//         s += `${"87654321"[i]}\n`;
-//       }
-//     }
-//   }
-
-//   return s;
-// };
 
 const chessGame = {
   game: "",
@@ -188,15 +124,12 @@ const chessGame = {
   players: {},
   moves: [],
   set newGame(newGame) {
-    // console.log({ newGame });
     this.game = newGame;
   },
   bothPlayersJoined() {
     return Object.keys(this.players).length === 2;
   },
   isPlayerInGame(player) {
-    console.log({ player });
-    console.log({ players: this.players });
     return !!Object.keys(this.players).find((item) => item === player);
   },
   getPlayerTurn() {
@@ -215,7 +148,6 @@ const chessGame = {
     )}. Estado del tablero:\n${paintBoard(this.game.board())}`;
   },
   startGame(player, color) {
-    console.log(player);
     if (this.game)
       return "Ya existe una partida. Usa !finishGame para borrar la partida creada";
     const newGame = new Chess();
@@ -223,11 +155,6 @@ const chessGame = {
     this.turn = newGame.turn();
     const playerColor = color === "b" ? "b" : "w";
     this.players[player] = playerColor;
-    // console.log("board");
-    // console.log(this.game.board());
-    // console.log("paintboard");
-    // console.log(paintBoard(this.game.board()));
-    // console.log(this.game.ascii());
     return `Se ha creado una partida. Otro usuario debe escribir el comando !play para empezar a jugar contra ti.`;
   },
   finishGame(player) {
@@ -268,7 +195,7 @@ const chessGame = {
     this.players[player] = newPlayerColor;
     return `El usuario ${player} ha sido añadido al juego. Su color es ${getTextPlayerColor(
       newPlayerColor
-    )}. Consulta la leyenda con el comando !caption. Estado del tablero: \n ${paintBoard(
+    )}. Consulta la leyenda con el comando !caption. El estado del tablero es: \n ${paintBoard(
       this.game.board()
     )}`;
   },
@@ -278,7 +205,6 @@ const chessGame = {
       return "Comando inválido, escribe !move [movimiento]. Consulta los movimientos posibles con !possibleMoves";
     if (this.players[player] === this.turn) {
       const move = this.game.move(playerMove);
-      console.log({ move });
       if (move) {
         const history = {
           color: this.turn,
@@ -286,10 +212,9 @@ const chessGame = {
           move: move,
         };
         this.moves.push(history);
-        this.turn = this.game.turn();
-        // console.log("movement", this.game.moves());
         const gameOverText = this.gameOver();
         if (!!gameOverText) return gameOverText;
+        this.turn = this.game.turn();
         return `El usuario ${player} Ha hecho un movimiento. Consulta la leyenda con el comando !caption. Estado del tablero: \n${paintBoard(
           this.game.board()
         )}`;
@@ -299,9 +224,7 @@ const chessGame = {
     return "No es tu turno. Usa este comando en tu turno para realizar un movimiento.";
   },
   getPossibleMoves(player) {
-    console.log("isplayeringame", this.isPlayerInGame(player));
     if (!this.isPlayerInGame(player)) return;
-    console.log("turn", this.turn);
     if (this.players[player] === this.turn) {
       return `Los movimientos posibles son: ${this.game
         .moves()
@@ -309,7 +232,6 @@ const chessGame = {
           ", "
         )}. Para mover una ficha, recuerda escribir !move [movimiento]`;
     }
-    console.log("turn: ", this.turn);
     return `No es tu turno, es turno de las fichas ${getTextPlayerColor(
       this.turn
     )}. Tus fichas son las ${getTextPlayerColor(this.players[player])}.`;
@@ -329,12 +251,6 @@ const chessGame = {
   },
 };
 
-// chessGame.startGame();
 console.log({ chessGame });
-// console.log(chessGame.board());
-// chessGame.getTurn;
-// // console.log("moves", chessGame.possibleMoves);
-// chessGame.setPlayerMove("w", "e4");
-// console.log(chessGame.board());
 
 module.exports = chessGame;
